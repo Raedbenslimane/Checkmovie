@@ -1,9 +1,8 @@
 import { Rating } from "@mui/material";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const Filtre = (setSearch, setRate, Rate) => {
+const Filtre = ({ setSearch, setRate, Rate }) => {
   return (
     <div>
       <Form>

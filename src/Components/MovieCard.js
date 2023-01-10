@@ -1,6 +1,7 @@
 import React from "react";
 import { Rating } from "@mui/material";
 import { Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const MovieCard = ({ dataMovie }) => {
   return (
     <div>
@@ -26,6 +27,7 @@ const MovieCard = ({ dataMovie }) => {
               </Card.Body>
               <Rating name="read-only" value={movie.Rating} readOnly />
             </Card>
+            <Link to={`/Trailer/${movie.id}`}>MORE DETAILS...</Link>
           </Col>
         ))}
       </Row>

@@ -1,34 +1,32 @@
 import { useState } from "react";
 import "./App.css";
 import { data } from "./Components/data.js";
-import MovieCard from "./Components/MovieCard";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Add from "./Components/Add";
-import Filtre from "./Components/Filtre";
-import { width } from "@mui/system";
+import Films from "./Components/Films";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Trailer from "./Components/Trailer";
 
 function App() {
   const [dataMovie, setDatamovie] = useState(data);
-  const [search, setSearch] = useState("");
-  const [Rate, setRate] = useState(0);
 
-  const AddMovie = (newMovie) => {
-    setDatamovie([...dataMovie, newMovie]);
-  };
   return (
     <div className="App">
-      <div display={{ display: "flex" }}>
-        <Add AddMovie={AddMovie} />
-        <Filtre setSearch={setSearch} setRate={setRate} rate={Rate} />
-      </div>
-
-      <MovieCard
-        dataMovie={dataMovie.filter(
-          (movie) =>
-            movie.title.trim().toLowerCase().includes(search) &&
-            movie.rating >= Rate
-        )}
-      />
+      <Router>
+        <Routes>
+          <Route
+            index
+            element={
+              <Films dataMovie={dataMovie} setDatamovie={setDatamovie} />
+            }
+          ></Route>
+          <Route
+            path="/Trailer/:idmovie"
+            element={<Trailer dataMovie={dataMovie} />}
+          >
+            {" "}
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
